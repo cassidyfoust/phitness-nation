@@ -30,7 +30,8 @@ class ArchivedUsers extends Component {
 
     state = {
         listUser: [],
-        deleteOpen: false
+        deleteOpen: false,
+        rctvOpen: false
     }
 
     componentDidMount() {
@@ -67,26 +68,28 @@ class ArchivedUsers extends Component {
         })
     };
 
-    reactivateUser = (id) => {
-        this.props.dispatch({ type: 'REACTIVATE_USER', payload: [id] });
-        this.listUsers();
-        this.listUsers();
-    }
-
-    handleReactivateUser = (userid) => {
-        confirmAlert({
-            message: `Are you sure you want to reactivate this user?`,
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => this.reactivateUser(userid)
-                },
-                {
-                    label: 'No',
-                }
-            ]
+   
+    handleRctvClose = () => {
+        this.setState({
+            ...this.state,
+            rctvOpen: false
         })
     };
+
+    handleRctvOpen = (userid) => {
+        this.setState({
+            ...this.state,
+            rctvOpen: true,
+            userToRctv: userid
+        })
+    };
+
+
+    permanentlyRctvUser = (id) => {
+        this.props.dispatch({ type: 'REACTIVATE_USER', payload: id });
+        this.listUsers();
+        this.handleRctvClose();
+    }
 
     render() {
         return (
@@ -101,7 +104,7 @@ class ArchivedUsers extends Component {
                                                 <h5 className="styled-h5">Name:</h5> {user.username} <br />
                                                 <h5 className="styled-h5">DOB:</h5> {user.age}<br />
                                                 <h5 className="styled-h5">Phone:</h5> {user.phone}<br />
-                                                <button className="archived-btns" onClick={() => this.handleReactivateUser(user.id)}>REACTIVATE</button>
+                                                <button className="archived-btns" onClick={() => this.handleRctvOpen(user.id)}>REACTIVATE</button>
                                                 <button className="archived-btns" onClick={() => this.handleDeleteOpen(user.id)}>PERMANENTLY DELETE</button>
                                             </div>
                                         </MyCard>)
@@ -113,13 +116,25 @@ class ArchivedUsers extends Component {
                                     <h5 className="styled-h5">Name:</h5> {user.name} <br/>
                                         <h5 className="styled-h5">DOB:</h5> {user.age}<br/>
                                         <h5 className="styled-h5">Phone:</h5> {user.phone}<br/>
-                                            <button className="archived-btns" onClick={() => this.handleReactivateUser(user.id)}>REACTIVATE</button>
+                                            <button className="archived-btns" onClick={() => this.handleRctvOpen(user.id)}>REACTIVATE</button>
                                             <button className="archived-btns" onClick={() => this.handleDeleteOpen(user.id)}>PERMANENTLY DELETE</button>
                                     </div>
                                     </MyCard>)
                                 }
                             }
                         })}
+
+                    <Dialog open={this.state.rctvOpen} onClose={this.rctvClose}>
+                        <DialogTitle id="form-dialog-title"><h3>Are you sure you want to RCTV user?</h3></DialogTitle>
+                        <DialogActions>
+                            <button onClick={this.handleRctvClose}>
+                                CANCEL
+                                        </button>
+                            <button onClick={(e) => this.permanentlyRctvUser(this.state.userToRctv)}>
+                                YES
+                                        </button>
+                        </DialogActions>
+                    </Dialog>
 
                     <Dialog open={this.state.deleteOpen} onClose={this.deleteClose}>
                         <DialogTitle id="form-dialog-title"><h3>Are you sure you want to permanently delete this user?</h3></DialogTitle>
