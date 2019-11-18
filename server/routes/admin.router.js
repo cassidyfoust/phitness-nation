@@ -356,19 +356,7 @@ router.put('/edituser', (req, res) => {
         })
 })
 
-//req.params is an array with one just index (the user's id)
-router.put('/reactivate/:id', (req, res) => {
-    console.log("req: ", req.body, req.params.id);
-    const userId = req.params.id;
-    let queryText = `UPDATE "user" SET "active" = 'True' WHERE "id" = $1;`
-    pool.query(queryText, [userId])
-        .then(() => {
-            res.sendStatus(200);
-        }).catch((error) => {
-            res.sendStatus(500);
-            console.log('REACTIVATE USER INFO ERROR:', error);
-        })
-})
+
 
 
 module.exports = router;
