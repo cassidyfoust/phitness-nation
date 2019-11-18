@@ -341,10 +341,4 @@ router.get('/exercises/:id', (req, res) =>{
             console.log('GET EXERCISES FOR ONE WOKROUT ERROR:', error)
         })
 })
-
-
-
-
-
-
 module.exports = router;
