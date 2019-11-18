@@ -344,18 +344,6 @@ router.get('/exercises/:id', (req, res) =>{
 
 
 
-router.put('/edituser', (req, res) => {
-    let queryText = `UPDATE "user" SET "name" = $1, "pronouns" = $2, "phone" = $3, "email" = $4, "emergency_contact_name" = $5, "emergency_contact_phone" = $6, "age" = $7 WHERE "id" = $8;`
-    let queryInfo = [req.body.name, req.body.pronouns, req.body.phone, req.body.email, req.body.emergencyContactName, req.body.emergencyContactPhone, req.body.dateOfBirth, req.body.id];
-    pool.query(queryText, queryInfo)
-        .then(() => {
-            res.sendStatus(200);
-        }).catch((error) => {
-            res.sendStatus(500);
-            console.log('PUT USER INFO ERROR:', error);
-        })
-})
-
 
 
 
