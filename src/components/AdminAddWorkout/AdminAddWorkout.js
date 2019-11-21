@@ -25,7 +25,7 @@ class AdminAddWorkout extends Component {
         user_id: this.props.match.params.id,
         week: 0,
         maxWeek: 1,
-        //exercise_id, assigned_reps, assigned_sets, assigned_weight, tips
+        //exercise_id, assigned_reps, assigned_sets, assigned_weight, tips, order
         exercises: [
 
         ],
@@ -41,7 +41,8 @@ class AdminAddWorkout extends Component {
             assigned_reps: '',
             assigned_sets: '',
             assigned_weight: '',
-            tips: ''
+            tips: '',
+            order: 1
         }
     }
     componentDidMount = () =>{
@@ -108,7 +109,8 @@ class AdminAddWorkout extends Component {
                 assigned_reps: this.state.tempExercise.assigned_reps,
                 assigned_sets: this.state.tempExercise.assigned_sets,
                 assigned_weight: this.state.tempExercise.assigned_weight,
-                tips: this.state.tempExercise.tips
+                tips: this.state.tempExercise.tips,
+                order: this.state.tempExercise.order
             }
         ]})
         this.setState({ tempExercise: {
@@ -116,7 +118,8 @@ class AdminAddWorkout extends Component {
             assigned_reps: '',
             assigned_sets: '',
             assigned_weight: '',
-            tips: ''
+            tips: '',
+            order: this.state.tempExercise.order +=1
         }})
     }
     emailToggle = () =>{

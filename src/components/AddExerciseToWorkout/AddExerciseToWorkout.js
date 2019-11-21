@@ -40,7 +40,8 @@ class AddExerciseToWorkout extends Component {
         assigned_sets: '',
         assigned_reps: '',
         assigned_weight: '',
-        tips: ''
+        tips: '',
+        order: 1
 
     }
     componentDidMount = () =>{
@@ -99,6 +100,7 @@ class AddExerciseToWorkout extends Component {
                     assigned_sets: this.state.assigned_sets,
                     assigned_weight: this.state.assigned_weight,
                     tips: this.state.tips,
+                    order: this.state.order
                 }
             }})
         this.setState({
@@ -106,7 +108,8 @@ class AddExerciseToWorkout extends Component {
             assigned_reps: '',
             assigned_sets: '',
             assigned_weight: '',
-            tips: ''
+            tips: '',
+            order: this.state.order +=1
         })
         this.setClose();
     }

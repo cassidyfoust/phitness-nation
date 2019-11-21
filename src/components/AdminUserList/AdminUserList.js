@@ -413,6 +413,7 @@ class AdminUserList extends Component {
             </div>
         )
     }
+}
 
 
 

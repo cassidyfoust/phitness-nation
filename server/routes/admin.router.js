@@ -202,8 +202,9 @@ router.put('/workouts', rejectUnauthenticated, (req, res) =>{
 
 //Admin POST request to add exercise workouts for a user, send: { workout_id: int, exercise_id: int, assigned_sets: int, assigned_reps: int, assigned_weight: int, tips: "String" }
 router.post('/exerciseWorkouts', rejectUnauthenticated, (req, res) =>{
-    const queryText = 'INSERT INTO "exercise_workouts" ("workout_id", "exercise_id", "assigned_sets", "assigned_reps", "assigned_weight", "tips") VALUES ( $1, $2, $3, $4, $5, $6);';
-    const queryInfo = [ req.body.workout_id, req.body.exercise.exercise_id, req.body.exercise.assigned_sets, req.body.exercise.assigned_reps, req.body.exercise.assigned_weight, req.body.exercise.tips ]
+    console.log('hit exercise workouts!')
+    const queryText = 'INSERT INTO "exercise_workouts" ("workout_id", "exercise_id", "assigned_sets", "assigned_reps", "assigned_weight", "tips", "order") VALUES ( $1, $2, $3, $4, $5, $6, $7);';
+    const queryInfo = [ req.body.workout_id, req.body.exercise.exercise_id, req.body.exercise.assigned_sets, req.body.exercise.assigned_reps, req.body.exercise.assigned_weight, req.body.exercise.tips, req.body.exercise.order ]
     pool.query(queryText, queryInfo)
         .then(() =>{
             res.sendStatus(201)
