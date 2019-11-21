@@ -155,10 +155,10 @@ class AdminAddWorkout extends Component {
     magicButton = () => {
         this.setState ({
             tempExercise: {
-                exercise_id: '',
-                assigned_reps: 5,
-                assigned_sets: 4,
-                assigned_weight: 225,
+                exercise_id: 1,
+                assigned_reps: 3,
+                assigned_sets: 10,
+                assigned_weight: 50,
                 tips: 'Keep your back neutral, core tight, and engage hamstrings'
             }
         })
@@ -167,18 +167,45 @@ class AdminAddWorkout extends Component {
     magicButton2 = () => {
         this.setState ({
             tempExercise: {
-                exercise_id: '',
-                assigned_reps: 8,
-                assigned_sets: 3,
+                exercise_id: 7,
+                assigned_reps: 3,
+                assigned_sets: 15,
+                assigned_weight: 40,
+                tips: 'Dont go too fast'
+            }
+        })
+    }
+    magicButton3 = () => {
+        this.setState({
+            tempExercise: {
+                exercise_id: 6,
+                assigned_reps: 4,
+                assigned_sets: 20,
+                assigned_weight: 10,
+                tips: 'Keep your back neutral, core tight, and engage hamstrings'
+            }
+        })
+    }
+    magicButton4 = () => {
+        this.setState({
+            tempExercise: {
+                exercise_id: 2,
+                assigned_reps: 3,
+                assigned_sets: 15,
                 assigned_weight: 45,
                 tips: 'Engage the glutes, feel the burn'
             }
         })
     }
+
     render() {
         return (
             <div className="admin-add-workout">
-                <h3 onClick={() => this.magicButton()}>Add Exercises to Workout:</h3>
+                <h3 onClick={() => this.magicButton()}>Add Exercises to Workout:</h3> 
+                <center><h20 onClick={() => this.magicButton2()}> - </h20><h20 onClick={() => this.magicButton3()}> - </h20><h20 onClick={() => this.magicButton4()}> - </h20><br></br></center>
+
+
+                
             {/* {JSON.stringify(this.state)} */}
             {/* {JSON.stringify(this.props.reduxState.injuries.injuriesReducer)} */}
             <CreatableSelect
@@ -186,7 +213,8 @@ class AdminAddWorkout extends Component {
                 onChange={this.handleSelectChange}
                 onCreateOption ={this.handleCreate}
                 options={this.state.listExercises}
-            />
+                />
+
             <MyTextField
                 label="Sets"
                 value={this.state.tempExercise.assigned_sets}
