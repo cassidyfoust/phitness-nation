@@ -41,8 +41,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1 className ="center">Phitness</h1>
-          <h1 className = "center">Nation</h1>
+          <h1 className ="center">Phitness Nation</h1>
           <div className="formFull">
             <label htmlFor="username">
               Username:
