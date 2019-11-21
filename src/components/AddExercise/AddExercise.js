@@ -39,6 +39,8 @@ class AddExercise extends Component {
         })
     }
 
+    
+
     render() {
 
         return (

@@ -53,8 +53,22 @@ class AdminExerciseList extends Component {
         updateName: '',
         updateDescription: '',
         filterValue: '',
+        tempExercise: {
+            updateName: '',
+            newExerciseDescription:  ''
+    
+        }
     }
-
+    magicButton = () => {
+        console.log('yay');
+        
+        this.setState({
+            tempExercise: {
+                updateName: 'Concentration Curls',
+                newExerciseDescription: 'Dumbbell or similar weighted object is held in the hand with the arm extended and lifted to complete flexion of the arm at the elbow'
+            }
+        })
+    }
     handleChange = (event) => {
         this.setState({...this.state,
             newExerciseName: event.target.value,
@@ -274,10 +288,10 @@ class AdminExerciseList extends Component {
                 <div className="add-exercise-wrapper">
                 </div>
                 <Dialog open={this.state.newExerciseOpen} onClose={this.handleNewExerciseClose}>
-                    <DialogTitle id="form-dialog-title"><h3>Add New Exercise:</h3></DialogTitle>
+                    <DialogTitle id="form-dialog-title"><h3 onClick={()=>this.magicButton()}>Add New Exercise:</h3></DialogTitle>
                     <DialogContent>
-                        New exercise name: <input className="newUserInput" onChange={this.handleChange}></input>
-                        Description / links: <textarea className="editExerciseInput" onChange={this.addDescriptionChange} rows="4"></textarea>
+                            New exercise name:<input className="newUserInput" onChange={this.handleChange}></input>
+                            Description / links: <textarea className="editExerciseInput" onChange={this.addDescriptionChange} rows="4"></textarea>
                     </DialogContent>
                     <DialogActions>
                             <button onClick={this.handleNewExerciseClose}>
